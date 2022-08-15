@@ -1,0 +1,195 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+div.nav{
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    display: flex;
+    flex-wrap: wrap;
+}
+div.nav a:nth-child(5){
+    position: relative;
+}
+.nav a ul{
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    left: 0;
+    text-align: left;
+    background-color: aliceblue;
+    color: black;
+    top: 100%;
+    display: none;
+}
+.nav a ul li{
+    padding: 5px;
+}
+.nav a ul li:hover{
+    background-color: rgba(093, 163, 123, 0.5);
+}
+
+div.nav a{
+    display: block;
+    padding: 10px 24px  ;
+    text-decoration: none;
+    color: aliceblue;
+    text-align: center;
+}
+div.nav a:nth-child(5):hover ul{
+    display: block;
+}
+div.nav a:hover{
+    background-color: rgba(093, 163, 123, 0.5);
+}
+header{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+}
+div.seach {
+color: aliceblue;
+position: absolute;
+padding: 10px;
+right: 0;
+font-size: medium;
+}
+#slider{
+    background-color: aquamarine;
+    color: rebeccapurple;
+    margin-top: 37px;
+}
+div#img1{
+    position: relative;
+}
+div#img1 > img {
+    width: 100%;
+    vertical-align: bottom;
+}
+div.ghichu{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%,0%);
+    }
+section.band{
+    width: 70%;
+    margin: 0 auto;
+    padding: 50px 10px;
+}
+h1.about{
+    text-align: center;
+    letter-spacing: 2px;
+}
+p.about{
+    text-align: center;
+    color: gainsboro;
+    opacity: 0.75;
+}
+div.img2{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    text-align: center;
+}
+div.img2 > div{
+    width: 33.33%;
+}
+div.img2 > div > img{
+    width: 60%;
+    border-radius: 5px;
+}
+div#out{
+    background-color: black;
+}
+ul#day{
+    background-color: white;
+    list-style: none;
+    line-height: 30px;
+    padding: 0;
+}
+ul#day > li{ 
+    color: gainsboro;
+    opacity: 1;
+    border-bottom: 1px #ddd solid;
+    padding: 5px 15px;
+}
+ul#day > li >span{
+    background-color: #f44336;
+    margin: 3px 10px;
+    padding: 3px;
+
+}
+div#places {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+    margin: 0 -8px;
+}
+div.place {
+    width: 33.33%;
+    padding: 8px;
+}
+div.img3 > img{
+    width: 100%;
+    vertical-align: middle;
+}
+div.img3:hover{
+    opacity: 0.6;
+}
+.title3{
+    background-color: #ddd;
+    padding: 10px;
+
+}
+.title3 > h3{
+    margin: 0;
+}
+.title3 > .about{
+    color: black;
+    text-align: left;
+}
+.title{
+    text-align: justify;
+}
+.bt{
+    background-color: black;
+    color: white;
+    border: 0;
+    padding: 5px;
+
+}
+.bt:hover{
+    background-color: gainsboro;
+}
+#cl > p{
+    margin: 10px;
+    font-weight: 500;
+}
+.flexbox{
+    display: flex;
+    flex-wrap: wrap;
+}
+#cr input{
+    border: 1px gainsboro solid;
+    width: 100%;
+    padding: 8px;
+
+}
+div.m{
+    font-size: 18px;
+    padding: 5px;
+}
+footer > i{
+    color: gainsboro
+}
+
+
