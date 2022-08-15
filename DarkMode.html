@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarkMode</title>
+    <style>
+        body{
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            background-color: aliceblue;
+            transition: all 0.3s linear;
+        }
+        .dark{
+            color: white;
+            background-color: black;
+        }
+        .btn__dark{
+            background-color: white;
+        }
+        div{
+            text-align: center;
+            
+        }
+        button{
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            width: 30px;
+            border-radius: 100%;
+            height: 30px;
+            border: 0;
+            background-color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn"></button>
+    <div>
+        <h3>Đặng Ngọc Hoài Nam</h3>
+        <p>Hãy đến nơi bạn thích, hãy trở thành người mà bạn muốn. Bởi lẽ, bạn chỉ có một cuộc đời và một cơ hội để thực hiện tất cả những gì mong mỏi.</p>
+    </div>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', ()=> {
+            document.querySelector('body').classList.toggle('dark');
+            document.querySelector('button').classList.toggle('btn__dark')
+        })
+
+    </script>
+</body>
+</html>

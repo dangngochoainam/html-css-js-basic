@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blurry Loading</title>
+    <style>
+        div.image{
+            width: 100%;
+            height: 97vh;
+            filter: 100px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .percent {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            font-size: 30px;
+            color: orange;
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="image">
+        <img src="Image/hinh-nen-4k-dep-cho-may-tinh-laptop-ipad-dien-thoai-di-dong-49.jpg" alt="">
+    </div>
+    <div class="percent">
+        100%
+    </div>
+
+    <script>
+        // https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+        const scale = (num, in_min, in_max, out_min, out_max) => {
+            return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+        }
+        let load = 0
+        function handle(){
+            load++
+            if(load > 99){
+                clearInterval(run)
+            }
+            document.querySelector(".image").style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
+            document.querySelector(".percent").innerText = `${load}%`
+            document.querySelector(".percent").style.opacity = scale(load, 0, 100, 1, 0)
+        }
+        let run = setInterval(handle, 30)
+        handle()
+
+    </script>
+</body>
+</html>

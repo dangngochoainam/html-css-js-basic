@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoomEffect</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 97vh;
+            background-color: orange;
+        }
+        .container{
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Music/cbdbb3c3adbe5ae003af.jpg" alt="">
+    </div>
+    <script>
+        const img = document.querySelector("img");
+        //Xử lí khi di chuyển chuột trên ảnh
+        img.addEventListener("mousemove", (e) => {
+            //clientX để lấy tọa độ của trục X, tương tự như clientY
+            //offsetLeft lấy tọa độ của element theo trục X theo phần tử cha
+            const x = e.clientX - img.offsetLeft;
+            const y = e.clientY - img.offsetTop;
+            //transformOrigin thay đổi trọng tâm. Từ trọng tâm đó để nó transform theo các thuộc tính của transform. Gốc mặc định của nó là 50% 50%
+            img.style.transformOrigin = `${x}px ${y}px`;
+            img.style.transform = "scale(3)";
+        })
+        img.addEventListener("mouseleave", () => {
+            img.style.transformOrigin = `50% 50%`;
+            img.style.transform = "scale(1)";
+            
+        })
+    </script>
+</body>
+</html>

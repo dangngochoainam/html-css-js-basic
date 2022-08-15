@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Product Cart</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            background-image: linear-gradient(to right, #4daf54, #3d8880);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex{
+            display: flex;
+        }
+        button{
+            cursor: pointer;
+        }
+        .cart{
+            position: relative;
+            padding: 25px 15px;
+            background-color: #272d40;
+            width: 320px;
+            height: 400px;
+        }
+        .image{
+            width: 90%;
+        }
+        .image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cart:hover .image{
+            transform: translateY(-75px) rotateZ(-20deg);
+        }
+
+        .cart:hover .title{
+            transform: translate(-45px, -55px);
+        }
+
+        .cart:hover .price{
+            transform: translate(-118px, -55px);
+        }
+        .transform{
+            transition: transform ease 0.5s;
+        }
+
+        .title{
+            font-size: 24px;
+            font-weight: bold;
+            color: #4daf54;
+            text-align: center;
+        }
+        .price{
+            margin-top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+       
+        .btn-size{
+            padding: 8px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 0;
+            margin-right: 10px;
+        }
+
+        .feature{
+            align-items: flex-end;
+            margin-bottom: 20px;
+            transition: all ease .5s;
+        }
+        .feature h3{
+            margin-right: 15px;
+            font-size: 20px;
+            font-weight: unset;
+            color: white;
+        }
+
+        .btn-color{
+            width: 20px;
+            height: 20px;
+            border-radius:50px;
+            border: 0;
+            margin-right: 10px;
+        }
+
+        .btn{
+            padding: 10px 20px;
+            background-color: #4daf54;
+            border: 0;
+            border-radius: 5px;
+            margin-right: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-color__green{
+            background-color: green;
+        }
+        .btn-color__red{
+            background-color: red;
+        }
+        .btn-color__black{
+            background-color: black;
+        }
+        .slide{
+            transform: translateY(120px);
+            opacity: 0;
+        }
+        .cart:hover .slide{
+            transform: translateY(-20px);
+            opacity: 1;
+        }
+        .icon{
+            position: absolute;
+            border: 0;
+            background-color: transparent;
+            z-index: 1;
+        }
+        .icon button{
+            border: 0;
+            background-color: transparent;
+            color: white;
+            font-size: 20px;
+        }
+        .add-cart{
+            right:15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart">
+        <span class="icon add-favorite">
+            <button ><i class="far fa-heart"></i></button>
+        </span>
+        <span class="icon add-cart">
+            <button><i class="fas fa-cart-plus"></i></button>
+        </span>
+        <div class="image transform">
+            <img src="Image/Nike Zoom KD 12.png" alt="">
+        </div>
+        <h2 class="title transform">Nike Zoom KD 12 </h2>
+        <p class="price transform">$99</p>
+        <div class="slide feature flex">
+            <h3>Size: </h3>
+            <button class="btn-size">6</button>
+            <button class="btn-size">7</button>
+            <button class="btn-size">8</button>
+            <button class="btn-size">9</button>
+        </div>
+        <div class="slide feature flex">
+            <h3>Color: </h3>
+            <button class="btn-color btn-color__green"></button>
+            <button class="btn-color btn-color__red"></button>
+            <button class="btn-color btn-color__black"></button>
+
+        </div>
+        <div class="slide feature flex">
+            <button class="btn btn-buy">Buy now</button>
+            <button class="btn btn-add">Add cart</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Search Widget</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aqua;
+        }
+        form{
+            display: flex;
+            height: 2rem;
+        }
+        input{
+            background-color: white;
+            border: 0;
+            padding: 0;
+            width: 0;
+            transition: width ease .5s;
+            
+        }
+        input.show{
+            width: 10rem;
+        }
+        button{
+            background-color: white;
+            border: 0;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="" action="">
+            <input type="text" name="keyword" placeholder="Keyword">
+            <button class="search"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <script>
+        const input = document.querySelector("input");
+        const search = document.querySelector(".search")
+        search.addEventListener("click", (e) => {
+            e.preventDefault();
+            input.classList.toggle("show")
+        })
+    </script>
+</body>
+</html>

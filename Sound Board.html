@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Board</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 97vh;
+        }
+        .btn{
+            padding: 10px 20px;
+            margin: 0 20px;
+            color: white;
+            background-color: brown;
+            border: 0;
+            border-radius: 5px;
+            transform: translate(0);
+            transition: transform .3s linear;
+        }
+        .btn:active{
+            transform: translate(5px, 4px);
+        }
+    </style>
+</head>
+<body>
+    <audio id="boo" src="Music/boo.mp3"></audio>
+    <audio id="tada" src="Music/tada.mp3"></audio>
+    <audio id="victory" src="Music/victory.mp3"></audio>
+    <audio id="wrong" src="Music/wrong.mp3"></audio>
+    <div class="container">
+
+    </div>
+    <script>
+        const sounds = ["boo", "tada", "victory", "wrong"];
+        const container = document.querySelector('.container');
+        sounds.forEach(sound => {
+            let btn = document.createElement("button");
+            btn.classList.add("btn");
+            btn.classList.add(sound)
+            btn.textContent = sound;
+            container.appendChild(btn);
+            btn.addEventListener('click', (e)  => {
+                stopMusic();
+                document.getElementById(sound).play();
+            })
+        })
+        function stopMusic(){
+            sounds.forEach(sound => {
+                const music = document.getElementById(sound);
+                music.pause();
+                music.currentTime = 0;
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        .flex{
+            display: flex;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            position: relative;
+            background-color: rgb(77, 74, 74);
+            width: 40%;
+            justify-content: space-around;
+        }
+        .ball{
+            position: absolute;
+            top: -44%;
+            left: 26px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: greenyellow;
+            border: 5px white solid;
+            transition: transform ease 0.5s;
+        }
+        span{
+            display: block;
+            transform: translateY(15px);
+            transition: all ease 0.5s;
+        }
+        .item{
+            font-size: 30px;
+            text-align: center;
+            margin: 10px 15px;
+        }
+
+        .title{
+            opacity: 0;
+        }
+
+        .item.active .title{
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .item.active .icon{
+            transform: translateY(-30px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container flex">
+
+        <div class="ball"></div>
+
+        <div class="item active">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="title">Home</span>
+        </div>
+
+        <div class="item">
+            <span class="icon"><i class="far fa-user"></i></span>
+            <span class="title">Home</span>
+        </div>
+
+        <div class="item">
+            <span class="icon"><i class="far fa-comment"></i></span>
+            <span class="title">Home</span>
+        </div>
+
+        <div class="item">
+            <span class="icon"><i class="fas fa-camera"></i></span>
+            <span class="title">Home</span>
+        </div>
+
+        <div class="item">
+            <span class="icon"><i class="fas fa-cog"></i></span>
+            <span class="title">Home</span>
+        </div>
+
+    </div>
+
+
+    <script>
+        const items = document.querySelectorAll('.item')
+        const ballEl =  document.querySelector('.ball')
+        let pointRoot = 0
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                
+                let pointOld, pointNew
+                items.forEach(item => {
+                    if (item.classList.contains('active')){
+                        pointOld = item.getBoundingClientRect().left
+                        item.classList.remove('active')
+                    }
+                })
+                item.classList.add('active')
+
+                pointNew = item.getBoundingClientRect().left
+                
+                const point = pointNew - pointOld
+
+
+                ballEl.style.transform = `translateX(${pointRoot + point}px)`
+
+                pointRoot += point
+
+
+            })
+        })
+    </script>
+</body>
+</html>

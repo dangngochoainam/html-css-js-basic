@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 1.6rem;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        body{
+            display: grid;
+            place-content: center;
+            height: 97vh;
+        }
+        .container{
+            width: 50rem;
+            margin: 0 auto;
+            background-color: aquamarine;
+            padding: 3rem 2rem 0 2rem;
+        }
+        .question{
+            text-align: center;
+            font-size: 2rem;
+        }
+        .answers{
+            margin-top: 2rem;
+            padding-left: 2rem;
+        }
+        .btn{
+            margin-top: 3rem;
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: 1.6rem;
+            background-color: rgb(240, 151, 18);
+            color: azure;
+            border: none;
+            cursor: pointer;
+        }
+        .answer{
+            margin-top: 2rem;
+        }
+        .answer > input{
+            margin-right: 1rem;
+        }
+        h2{
+            padding: 1rem;
+            text-align: center;
+            font-size: 2.4rem;
+            color: azure;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h3 class="question">Who are you ?</h3>
+            <div class="answers">
+                <div class="answer">
+                    <input class="item" id="a" type="radio" name = "answer"><label for="a" id="a_text"></label>
+                </div>
+                <div class="answer">
+                    <input class="item" id="b" type="radio" name = "answer"><label for="b" id="b_text"></label>
+                </div>
+                <div class="answer">
+                    <input class="item" id="c" type="radio" name = "answer"><label for="c" id="c_text"></label>
+                </div>
+                <div class="answer">
+                    <input class="item" id="d" type="radio" name = "answer"><label for="d" id="d_text"></label>
+                </div>
+            </div>
+        </div>
+        <button class="btn">
+            Submit
+        </button>
+    </div>
+    <script>
+        const quizData = [
+        {
+            question: "What is the most used programming language in 2019?",
+            a: "Java",
+            b: "C",
+            c: "Python",
+            d: "JavaScript",
+            correct: "d",
+        },
+        {
+            question: "Who is the President of US?",
+            a: "Florin Pop",
+            b: "Donald Trump",
+            c: "Ivan Saldano",
+            d: "Mihai Andrei",
+            correct: "b",
+        },
+        {
+            question: "What does HTML stand for?",
+            a: "Hypertext Markup Language",
+            b: "Cascading Style Sheet",
+            c: "Jason Object Notation",
+            d: "Helicopters Terminals Motorboats Lamborginis",
+            correct: "a",
+        },
+        {
+            question: "What year was JavaScript launched?",
+            a: "1996",
+            b: "1995",
+            c: "1994",
+            d: "none of the above",
+            correct: "b",
+        },
+    ];
+    let currentQuestion = 0;
+    let score = 0;
+    let answer;
+    let selected = undefined;
+    const question = document.querySelector(".question");
+    const a_text = document.getElementById("a_text")
+    const b_text = document.getElementById("b_text")
+    const c_text = document.getElementById("c_text")
+    const d_text = document.getElementById("d_text")
+    const btn = document.querySelector('button.btn');
+    
+    loadQuestions();
+
+    function loadQuestions(){
+        delAnswer();
+        question.innerHTML = quizData[currentQuestion].question;
+        a_text.innerText = quizData[currentQuestion].a;
+        b_text.innerText = quizData[currentQuestion].b;
+        c_text.innerText = quizData[currentQuestion].c;
+        d_text.innerText = quizData[currentQuestion].d;
+        answer = quizData[currentQuestion].correct;
+    }
+    
+    //lấy lựa chọn
+    function getSelect(){
+        const items = document.querySelectorAll(".item")
+        items.forEach(item => {
+            if(item.checked){
+                selected = item.id;
+            }
+        })
+        return selected;
+    }
+    //xóa checked
+    function delAnswer(){
+        const items = document.querySelectorAll('.item');
+        items.forEach(item => item.checked = false)
+    }
+
+    //click vào submit
+    btn.addEventListener('click', () => {
+        console.log(getSelect())
+        //so sánh câu trả lời đúng với lựa chọn
+        if(answer == getSelect()){
+            score++;
+        }
+        currentQuestion++;
+
+        if(currentQuestion < quizData.length){
+            loadQuestions();
+            
+        }
+        else{
+            document.querySelector('.container').innerHTML = `<h2>You answered correctly at ${score}/${quizData.length} questions.</h2>`
+            
+        }
+    })
+    </script>
+</body>
+</html>

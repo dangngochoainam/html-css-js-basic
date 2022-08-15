@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink Water</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #2b88f0;
+            color: white;
+            font-size: 18px;
+        }
+        .info{
+            text-align: center;
+        }
+        .container{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .cup{
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            width: 200px;
+            border: 4px rgb(40, 40, 175) solid;
+            background-color: white;
+            border-radius: 0 0 40px 40px;
+            overflow: hidden;
+        }
+        .water{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2b88f0;
+            width: 100%;
+            /* height: 87.5%; */
+            height: 100%;
+            transition: height ease 0.5s;
+        }
+        
+        .water span{
+            color:rgb(40, 40, 175);
+        }
+        .percent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            font-weight: bold;
+            background-color: #1d81f3;
+            width: 100%;
+            transition: all ease 0.5s;
+            /* height:12.5%; */
+            color: rgb(40, 40, 175);
+
+        }
+        .sub-water{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 70%;
+        }
+        .sub-water_col250{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            height: 100px;
+            width: 21%;
+            border: 2px rgb(40, 40, 175) solid;
+            background-color: white;
+            color: #1d81f3;
+            border-radius: 0 0 20px 20px;
+            transition: background-color ease 0.5s;
+        }
+
+        .sub-water_col250.full{
+            color: white;
+            background-color: #1d81f3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>
+            Drink Water
+        </h1>
+        <h3>
+            Goal: 2 Liters
+        </h3>
+    </div>
+    <div class="container">
+        <div class="cup">
+            <div class="water">
+                <span>
+                    <strong>2</strong>L
+                    <p>Remained</p>
+                </span>
+            </div>
+            <div class="percent"></div>
+
+        </div>
+        <h3>Select how many glasses of water that you have drank</h3>
+        <div class="sub-water">
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+            <div class="sub-water_col250">
+                <small>250ml</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const water = document.querySelector(".water")
+        const percent = document.querySelector(".percent")
+        const subWaters = document.querySelectorAll(".sub-water_col250")
+        const remained = document.querySelector("strong")
+        let count = 0
+
+        subWaters.forEach((subWater, idx) => {
+            subWater.addEventListener("click", () => highlight(idx))
+
+        })
+
+        function highlight(index){
+            if(index === 0 && document.querySelectorAll(".sub-water_col250.full").length === 1){
+                document.querySelector(".sub-water_col250.full").classList.remove("full")
+                index = -1
+            }
+            else{
+                subWaters.forEach((sub, idx) => {
+                    if(idx <= index){
+                        sub.classList.add("full")
+                    }
+                    else if(sub.classList.contains("full")){
+                        sub.classList.remove("full")
+                    }
+                })
+            }
+            
+            updateCup(index)
+        }
+
+        function updateCup(index){
+            const PercentHeight = (index + 1) * 12.5
+            if(PercentHeight == 0){
+                percent.style.opacity = 0
+                percent.textContent = PercentHeight + "%"
+                percent.style.height = PercentHeight + "%"
+            }
+            else{
+                percent.style.opacity = 1
+                percent.textContent = PercentHeight + "%"
+                percent.style.height = PercentHeight + "%"
+            }
+            const remainedHeight = 2- (((index + 1) * 12.5) / 100) * 2
+            remained.textContent = remainedHeight
+            water.style.height = (100 - PercentHeight) + "%"
+            
+        }
+
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+    <title>Recipe App</title>
+    <style>
+        html{
+            font-size: 62.5%;
+        }
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: antiquewhite;
+        }
+        .moblie-container{
+            width: 80vw;
+            margin: 0 auto;
+            padding-top: 5rem;
+            position: relative;
+        }
+        header{
+            text-align: right;
+        }
+        ul.fav-meals{
+            display: grid;
+            grid-template-columns: 8rem 8rem 8rem 8rem;
+            grid-auto-rows: 9rem;
+            column-gap: 1rem;
+            padding: 2rem;
+            place-content: center;
+            /* overflow: scroll; */
+            background-color: aquamarine;
+            list-style-type: none;
+        }
+        li.fav-meal{
+            position: relative;
+
+        }
+        li.fav-meal .btn-close{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 0;
+            background-color: transparent;
+            opacity: 0;
+        }
+        li.fav-meal:hover .btn-close{
+            color: red;
+            cursor: pointer;
+            opacity: 1;
+        }
+        li.fav-meal > img{
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        li.fav-meal > span{
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            width: 100%;
+        }
+        h3{
+            text-align: center;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .meals{
+            margin-top: 3rem;
+        }
+        .random{
+            position: absolute;
+            top: 3rem;
+            background-color: aquamarine;
+            padding: 0.5rem 1rem;
+            font-size: 1.6rem;
+        }
+        div.meal-header{
+            position: relative;
+            width: 60rem;
+            height: 40rem;
+            margin: 0 auto;
+        }
+        .meal-header img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .meal-body{
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 1rem;
+            font-size: 2rem;
+        }
+        .btn-heart{
+            border: 0;
+            background-color: transparent;
+        }
+        .btn-heart.active{
+            color: orangered;
+        }
+
+        .popup-info-container{
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+
+        }
+        .popup-info-container.hidden{
+            opacity: 0;
+            pointer-events: none;
+
+        }
+        .content-meal{
+            font-size: 1.6rem;
+        }
+        .meal-info{
+            background-color: #fff;
+        }
+        .popup-info-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .popup-info-container img{
+            width: 100%;
+            height: 40rem;
+            object-fit: cover;
+        }
+        
+        .popup-info-container ul {
+            padding: 2rem;
+        }
+        .close-info{
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        .popup-meal .close-info{
+            opacity: 1;
+        }
+        .popup-meal{
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 0 2rem;
+            position: relative;
+            overflow: auto;
+            max-height: 100vh;
+            max-width: 60rem;
+            width: 100%;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div class="moblie-container">
+        <header>
+            <input id="search-term" type="text">
+            <button id="search"><i class="fas fa-search"></i></button>
+        </header>
+        <div class="fav-container">
+            <h3>Favorite Meals</h3>
+            <ul class="fav-meals">
+            </ul>
+        </div>
+        <div class="meals">
+
+        </div>
+
+
+            <div class="popup-info-container hidden">
+                <div class="popup-meal">
+                    <button class="close-info"><i class="fas fa-times"></i></button>
+                    <div class="meal-info">
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script>
+
+
+        const searchTerm = document.querySelector("#search-term");
+        const btnSearch = document.querySelector("#search")
+        const meals = document.querySelector(".meals");
+        const favMeals = document.querySelector(".fav-meals");
+        const popupInfoContainer = document.querySelector(".popup-info-container");
+        const popupMeal = document.querySelector(".popup-meal");
+        const btnCloseInfo = document.querySelector('.close-info');
+        const mealInfo = document.querySelector(".meal-info");
+        getRandomMeal();
+        fetchFavMeals();
+        
+        //lấy meal từ api ngẫu nhiên
+        async function getRandomMeal(){
+            const resp = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+            const respData = await resp.json();
+            addMeal(respData.meals[0], true);
+            
+        }
+
+        //thêm meal show lên
+        function addMeal(mealData, random = false){
+            // console.log(mealData);
+            const meal = document.createElement("div");
+            meal.classList.add("meal");
+            meal.innerHTML = `
+            <div class="meal-header">
+                ${random ? `<span class="random">
+                        Random Recipe
+                    </span>` : ""}
+                    
+                    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+                </div>
+                <div class="meal-body">
+                    <h4>${mealData.strMeal}</h4>
+                   <button class="btn-heart"><i class="fas fa-heart"></i></button>
+                </div>
+            `
+            meals.appendChild(meal);
+
+            meal.addEventListener("click", () => {
+                showMealInfo(mealData);
+            })
+
+            const btn = meal.querySelector(".btn-heart");
+            btn.addEventListener('click', (e) => {
+                if(btn.classList.contains("active")){
+                    btn.classList.remove('active');
+                    removeMealFromStorage(mealData.idMeal);
+                }
+                else{
+                    btn.classList.add("active");
+                    addMealInStorage(mealData.idMeal);
+                }
+                favMeals.innerHTML = '';
+                fetchFavMeals();
+                
+
+            })
+
+        }
+        
+        //tìm kiếm theo id
+        async function getMealById(id){
+            const resp = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id);
+        const respData = await resp.json();
+        //const meal = respData.meals[0];
+        return respData.meals[0];
+        }
+
+        //tìm kiếm dựa trên APISearch
+        async function getMealBySearch(term){
+            const resp = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + term);
+            const respData = await resp.json();
+            return respData.meals;
+        }
+
+
+        //thêm meal vào storage
+        function addMealInStorage(mealId){
+            const mealsId = getMealFromStorage();
+            localStorage.setItem("idMeal", JSON.stringify([...mealsId, mealId]));
+        }
+
+        //lấy danh sách từ storage
+        function getMealFromStorage(){
+            const mealsId = JSON.parse(localStorage.getItem("idMeal"));
+            return mealsId === null ? [] : mealsId;
+        }
+
+        //xóa danh sách yêu thích từ storage
+        function removeMealFromStorage(mealId){
+            const mealsId = getMealFromStorage();
+            localStorage.setItem("idMeal", JSON.stringify(mealsId.filter(id => id !== mealId)));
+        }
+
+        //lấy danh sách meals yêu thích từ storage show lên fav
+        async function fetchFavMeals(){
+            const mealsId = getMealFromStorage();
+            const meals = [];
+            for(let i = 0; i < mealsId.length; i++){
+                let mealId = mealsId[i];
+                let meal = await getMealById(mealsId[i]);
+                addMealToFav(meal, true);
+                // meals.push(meal);
+                
+            }
+            // console.log(meals);
+        }
+
+        //Thêm đồ ăn vào danh sách yêu thích
+        function addMealToFav(mealData, random = false){
+            // console.log(mealData);
+            const favMeal = document.createElement("li");
+            favMeal.classList.add("fav-meal");
+            favMeal.innerHTML = `
+                    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}"><span>${mealData.strMeal}</span>
+                    <button class = "btn-close"><i class="fas fa-times"></i></button>
+            `;
+            favMeals.appendChild(favMeal);
+            favMeal.addEventListener("click", () => {
+                showMealInfo(mealData);
+            })
+            const btnClose = favMeal.querySelector(".btn-close");
+            btnClose.addEventListener('click', () => {
+                removeMealFromStorage(mealData.idMeal);
+                favMeals.innerHTML = "";
+                fetchFavMeals();
+            });
+           
+
+        }
+
+        //handle event click on btn search
+        btnSearch.addEventListener('click', async () => {
+            meals.innerHTML = "";
+            const searchText = searchTerm.value;
+            const mealsBySearch = await getMealBySearch(searchText);
+            if(mealsBySearch){
+                mealsBySearch.forEach(meal => {
+                    addMeal(meal, true);
+                })
+
+            }
+        })
+
+        btnCloseInfo.addEventListener('click', () => {
+           popupInfoContainer.classList.add("hidden");
+        })
+
+        //show popup về thông tin thức ăn
+        function showMealInfo(mealData){
+            //Khởi tạo cho rỗng để không bị lặp lại
+            mealInfo.innerHTML = "";
+            const meal = document.createElement('div');
+
+            //lấy các câu giới thiệu
+            const str = [];
+            for(let i = 1; i++; i<20){
+                if(mealData["strIngredient" + i]){
+                    str.push(`
+                        ${mealData["strIngredient" + i]} - ${
+                        mealData["strMeasure" + i]}
+                    `);
+                }else{
+                    break;
+                }
+            }
+            meal.innerHTML = `
+                        <div class="head-info">
+                            <h1>${mealData.strMeal}</h1>
+                            <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
+                        </div>
+                        <div>
+                            <p class="content-meal"> 
+                                ${mealData.strInstructions}
+                            <ul>
+                                ${str.map(ing => `<li>${ing}</li>`
+                                ).join("")}
+                            </ul>
+                        </div>
+            `
+
+            mealInfo.appendChild(meal);
+            popupInfoContainer.classList.remove("hidden")
+        }
+
+    </script>
+</body>
+</html>
+

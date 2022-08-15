@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Placeholder</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: bisque;
+        }
+        .container{
+            width: 320px;
+            background-color: white;
+            border-radius: 10px;
+
+        }
+        .image{
+            width: 100%;
+            background-color: rgb(238, 238, 238);
+            height: 200px;
+            border-radius: 10px 10px 0 0;
+        }
+        .image img{
+            border-radius: inherit;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content{
+            padding: 15px 20px;
+            font-size: 18px;
+        }
+        .title{
+        }
+        .description{
+            margin-top: 10px;
+            color: gray;
+        }
+        .profile{
+            margin-top: 20px ;
+            display: flex;
+        }
+        .image-profile{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+        }
+        /* .image-profile.animate-bg{
+            background-color: #aaa;
+        } */
+        .image-profile img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+        .info-profile{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-left: 20px;
+        }
+        small{
+            color: #aaa;
+        }
+        @keyframes bgPos {
+            0% {
+                background-position: 50% 0;
+            }
+
+            100% {
+                background-position: -150% 0;
+            }
+        }
+        .title.animate-bg{
+            margin-bottom: 40px;
+        }
+        .animate-bg{
+             background: linear-gradient(
+                to right,
+                #f6f7f8 0%,
+                #edeef1 10%,
+                #f6f7f8 20%,
+                #f6f7f8 100%
+            ); 
+            background-size: 200% 100%; 
+            animation: bgPos 1s linear infinite;
+        }
+        .animate-bg_texts{
+            display: block;
+            height: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .name.animate-bg_texts{
+            width: 100px;
+        }
+        .date.animate-bg_texts{
+            width: 100px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image animate-bg">
+            <!-- <img src="Image/macbook.png" alt=""> -->
+        </div>
+        <div class="content">
+            <h3 class="title animate-bg animate-bg_texts">
+                <!-- Lorem ipsum dolor sit amet -->
+            </h3>
+            <p class="description">
+                <span class="animate-bg animate-bg_texts"></span>
+                <span class="animate-bg animate-bg_texts"></span>
+                <span class="animate-bg animate-bg_texts"></span>
+                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore perferendis -->
+            </p>
+            <div class="profile">
+                <div class="image-profile animate-bg">
+                    <!-- <img src="Image/2.jpg" alt=""> -->
+                </div>
+                <div class="info-profile">
+                    <strong class="name animate-bg animate-bg_texts">
+                        <!-- Hoài Nam -->
+                    </strong>
+                    <small class="date animate-bg animate-bg_texts">
+                        <!-- Oct 13, 2020 -->
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const header = document.querySelector('.image')
+        const title = document.querySelector('.title')
+        const excerpt = document.querySelector('.description')
+        const profile_img = document.querySelector(".image-profile")
+        const name = document.querySelector('.name')
+        const date = document.querySelector('.date')
+
+        const animated_bgs = document.querySelectorAll('.animate-bg')
+        const animated_bg_texts = document.querySelectorAll('.animate-bg_texts')
+
+        setTimeout(getData, 2500)
+
+        function getData() {
+        header.innerHTML =
+            '<img src="Image/macbook.png" alt="" />'
+        title.innerHTML = 'Lorem ipsum dolor sit amet'
+        excerpt.innerHTML =
+            'Lorem ipsum sit amet consectetur adipisicing elit. Dolore perferendis'
+        profile_img.innerHTML =
+            '<img src="Image/2.jpg" alt="" />'
+        name.innerHTML = 'Hoài Nam'
+        date.innerHTML = 'Oct 13, 2021'
+
+        animated_bgs.forEach((bg) => bg.classList.remove('animate-bg'))
+        animated_bg_texts.forEach((bg) => bg.classList.remove('animate-bg_texts'))
+}
+    </script>
+</body>
+</html>

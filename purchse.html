@@ -1,0 +1,193 @@
+
+<!--14/12 Vũ-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>Nhập sách</title>
+    <link rel="stylesheet" href="purchase.css">
+    <!-- <link href="{{ url_for('static', filename='css/purchase.css') }}" rel="stylesheet"/> -->
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <div class="d-flex align-items-center justify-content-between mt-2 mb-2" style = "position: relative;">
+                        <div class="d-flex align-items-center">
+                            <button class="mg-lf btn-icon"><i class="fas fa-arrow-left"></i></button>
+                            <h4 style="text-align: center; padding-top: 7px;">Nhập hàng</h4>
+                        </div>
+                        <div class="d-flex align-items-center">
+
+                            <form class="area-search" >
+                                <div class="input-group" >
+                                  <input id="search" type="text" class="form-control" placeholder="Tìm kiếm" style="width: 300px" oninput="searchProduct()" >
+                                  <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                  </div>
+                                </div>
+                              </form>
+
+                              <table class="products table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Tên sách</th>
+                                        <th scope="col">Thể loại</th>
+                                        <th scope="col">Tác giả</th>
+                                        <th scope="col">Tồn kho</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+                                 <tr class="product">
+                                    <td>
+                
+                                        <span class="img mr-1">
+                                            <img src="Image/24e24176efba6f7465329b389efeeb6b.jpg" alt="">
+                                        </span>
+                                        <span class="info-name">
+                                            You don't knows JS
+                                        </span>
+                                    </td>
+                                    <td class="info-category">Sách kham khảo </td>
+                                    <td class="info-author">Hoài Nam</td>
+                                    <td class="info-inventory">100</td>
+                                  </tr>   
+
+                                  <tr class="product">
+                                    <td class="info-name">You don't know J2</td>
+                                    <td class="info-category">Sách kham khảo 2</td>
+                                    <td class="info-author">Hoài Nam2</td>
+                                    <td class="info-inventory">1002</td>
+                                  </tr>  
+
+
+                                  <tr class="product">
+                                    <td class="info-name">You don't know J3</td>
+                                    <td class="info-category">Sách kham khảo 3</td>
+                                    <td class="info-author">Hoài Nam2</td>
+                                    <td class="info-inventory">1002</td>
+                                  </tr>  
+                                </tbody>  
+                                
+                              </table>
+                              
+
+                        </div>
+                    </div>
+                    <div class="main">
+                        <table class="table table-hover">
+                            <thead class="thead">
+                              <tr>
+                                    <th scope="col" class="text-center" ><i class="far fa-trash-alt"></i></th>
+                                    <th scope="col" class="text-center" >STT</th>
+                                    <th scope="col" colspan="3" style="min-width: 250px;">Sách</th>
+
+                                    <th scope="col" class="text-center" >Thể loại</th>
+                                    <th scope="col" class="text-center"  >Tác giả </th>
+                                    <th scope="col" class="text-center"  >Số lượng</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td class="text-center"><button class="btn btn-delete" style="padding: 0; background-color: transparent;"><i class="far fa-trash-alt"></i></button></td>
+                                    <th scope="row" class="text-center" >1</th>
+                                    <td colspan="3" style="min-width: 250px;" >
+                                        <span class="img mr-1">
+                                            <img src="Image/24e24176efba6f7465329b389efeeb6b.jpg" alt="">
+                                        </span>
+                                        <span class="name">
+                                            You don't knows JS
+                                        </span>
+
+                                    <td id="category" class="text-center" >
+                                        <span>Văn học</span>
+                                    </td>
+                                    <td id="author" class="text-center" >
+                                        <span>Hoài Nam</span>
+                                    </td>
+                                    <td id="quantity" class="text-center" >
+                                        <input type="number" min="1" value="1">
+                                    </td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-xs-12" style="min-height: 100vh;background-color: rgb(255, 255, 255);">
+                    <div class="right-part h-75">
+                        <div class="info d-flex justify-content-between mb-2">
+                            <div class="avatar d-flex align-items-center py-1 mx-2 my-2">
+                                <img src="Image/2.jpg" class="rounded-circle" style="width:30px; height: 30px;">
+                                <span id="username">username</span>
+                            </div>
+                            <div class="time d-flex align-items-center py-1 mx-2 my-2">
+                                <span id="day" class="pr-2">01/04/2022</span>
+                                <span id="hour">15: 20</span>
+                            </div>
+                        </div>
+
+                            <div class="input-group mb-4" style="position: relative;border-bottom: 2px rgb(122, 122, 122) solid;">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="background-color: transparent; border: 0;"><i class="fas fa-search"></i></span>
+                                </div>
+                                    <input type="text" class="form-control line search-user" placeholder="Tìm nhà cung cấp" style="border: 0;" >
+                                <div class="input-group-prepend">
+                                    <span class="btn input-group-text" style="background-color: transparent; border: 0;"><i class="fas fa-plus"></i></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row mt-1">
+                                <span class="col-md-6">Mã phiếu nhập</span>
+                                <span class="col-md-6 text-center" style="border-bottom: 1px antiquewhite solid;">Mã phiếu tự động</span>
+                            </div>
+            
+                            <div class="input-group mb-1 col-md-4">
+                              <input type="number" class=" text-right form-control line" style="border: 0;" min="10000">
+                            </div>
+
+
+
+                    </div>
+
+
+                        <div class="input-group mt-5" >
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" style="background-color: transparent; border: 0;"><i class="fas fa-pencil-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control line" placeholder="Ghi chú" style="border: 0;">
+
+                        </div>
+                        <div class="btn-save">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i><br>Hoàn Thành</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script src="purchase.js"></script>
+</body>
+</html>

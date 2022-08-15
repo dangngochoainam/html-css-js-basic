@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RotatingNavigationAnimation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 62.5%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            font-size: 1.6rem;
+            overflow-x: hidden;
+        }
+        .container{
+            padding: 10rem;
+            width: 100%;
+            transform-origin: top left;
+            background-color: white;
+            transition: transform ease 0.5s;
+            /* transform: rotate(-15deg); */
+        }
+        .image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .menuIcon{
+            position: fixed;
+            /* left: -0rem;
+            top: -0rem; */
+            left: -10rem;
+            top: -10rem;
+            width: 20rem;
+            height: 20rem;
+            background-color: orange;
+            border-radius:100%;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
+        }
+        .menuIcon button{
+            display: block;
+            font-size: 2.5rem;
+            color: white;
+            border: 0;
+            background-color: transparent;
+        }
+        .btn{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: rotate(0deg);
+            transition: transform ease 0.5s;
+        }
+        .btn.active {
+            transform: rotate(-55deg);
+            
+        }
+        .btn-bars{
+            position: absolute;
+            top: 13rem;
+            left: 70%;
+        }
+        .btn-close{
+            position: absolute;
+            top: 15rem;
+            left: 40%;
+            transform: rotate(55deg);
+        }
+        
+        .menu{
+            position: fixed;
+            bottom: 10rem;
+            left:0;
+            list-style-type: none;
+            font-size: 2rem;
+            color: white;
+            transform: translateX(-100%);
+            transition: transform ease 0.5s;
+        }
+        .menu li{
+            margin-top: 2rem;
+
+        }
+        .home{
+            margin-left: 1.5rem;
+        }
+        .about{
+            margin-left: 3rem;
+        }
+        .contact{
+            margin-left: 4.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Article</h1>
+        <small>Florin Pop</small>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia in ratione dolores cupiditate, maxime aliquid impedit dolorem nam dolor omnis atque fuga labore modi veritatis porro laborum minus, illo, maiores recusandae cumque ipsa quos. Tenetur, consequuntur mollitia labore pariatur sunt quia harum aut. Eum maxime dolorem provident natus veritatis molestiae cumque quod voluptates ab non, tempore cupiditate? Voluptatem, molestias culpa. Corrupti, laudantium iure aliquam rerum sint nam quas dolor dignissimos in error placeat quae temporibus minus optio eum soluta cupiditate! Cupiditate saepe voluptates laudantium. Ducimus consequuntur perferendis consequatur nobis exercitationem molestias fugiat commodi omnis. Asperiores quia tenetur nemo ipsa.</p>
+        <h3>My Dog</h3>
+        <div class="image">
+            <img src="Image/2.jpg" alt="">
+        </div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit libero deleniti rerum quo, incidunt vel consequatur culpa ullam. Magnam facere earum unde harum. Ea culpa veritatis magnam at aliquid. Perferendis totam placeat molestias illo laudantium? Minus id minima doloribus dolorum fugit deserunt qui vero voluptas, ut quia cum amet temporibus veniam ad ea ab perspiciatis, enim accusamus asperiores explicabo provident. Voluptates sint, neque fuga cum illum, tempore autem maxime similique laborum odio, magnam esse. Aperiam?</p>
+    </div>
+    <div class="menuIcon">
+        <div class="btn">
+            <button class="btn-bars"><i class="fas fa-bars"></i></button>
+            <button class="btn-close"><i class="fas fa-times"></i></i></button>
+        </div>
+    </div>
+
+    <nav>
+        <ul class="menu">
+            <li class="home">🎪Home</li>
+            <li class="about">🎃About</li>
+            <li class="contact">🎡Contact</li>
+        </ul>
+    </nav>
+    
+
+    <script>
+        const btnBars = document.querySelector(".btn-bars")
+        const btnClose = document.querySelector(".btn-close")
+        const container = document.querySelector(".container")
+        const menu = document.querySelector(".menu")
+        const menuIcon = document.querySelector(".btn")
+        btnBars.addEventListener("click", () => {
+            menuIcon.classList.add("active")
+            container.style.transform = "rotate(-15deg)"
+            menu.style.transform = "translateX(0)"
+            
+            
+        })
+        
+        btnClose.addEventListener("click", () => {
+            menuIcon.classList.remove("active")
+            container.style.transform = "rotate(0deg)"
+            menu.style.transform = "translateX(-100%)"
+            
+        })
+
+    </script>
+</body>
+</html>

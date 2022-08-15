@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.1.1/marked.min.js"></script>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;;
+    }
+    html{
+        font-size: 62.5%;
+    }
+    body{
+        background-color: aqua;
+    }
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        margin-top: 3rem;
+    }
+    .notes{
+        margin: 2rem 1rem 2rem 3rem;
+        height: 25rem;
+        width: 25rem;
+        background-color: white;
+        font-size: 1.6rem;
+        
+    }
+    .tools{
+        background-color: rgb(139, 197, 51);
+        display: flex;
+        justify-content: end;
+        height: 3rem;
+    }
+    .tools button{
+        background-color: transparent;
+        border: 0;
+        color: rgb(250, 245, 241);
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+    .notes .main{
+        height: 22rem;
+        width: 100%;
+    }
+    .notes .hidden{
+        display: none;
+    }
+    div.text-area {
+        width: 25rem;
+        height: 22rem;
+    }
+    .text-area textarea{
+        width: 100%;
+        height: 100%;
+        border: 0;
+        outline: none;
+        
+    }
+    .btn-add{
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        padding: 0.5rem;
+        color: rgb(250, 245, 241);
+        background-color: rgb(139, 197, 51);
+        border: 0;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="notes">
+            <div class="tools">
+                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+            </div>
+            <div class="main">
+                
+            </div>
+            <div class="text-area">
+                <textarea class="hidden"></textarea>
+            </div>
+        </div> -->
+        <button class="btn-add">
+            + Add notes
+        </button>
+    </div>
+    <script>
+        const btnAdd = document.querySelector(".btn-add");
+        const container = document.querySelector(".container");
+        //lấy dl từ storage khi reload
+        const notes = JSON.parse(localStorage.getItem("notes"));
+        if(notes){
+            notes.forEach(note => addNote(note));
+        }
+        btnAdd.addEventListener("click", () => {
+            addNote();
+        })
+        // Tạo mới 1 note
+        function addNote(text = ''){
+            let node = document.createElement("div");
+            node.classList.add("notes");
+            node.innerHTML = `
+            <div class="tools">
+                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                <button class="btn-delete"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="main ${text ? "" : "hidden"}">
+                    ${text ? text : ""}
+                    </div>
+                    <div class="text-area">
+                        <textarea class="${text ? "hidden" : ""}">${text ? text : ""}</textarea>
+                        </div>
+            `
+            container.appendChild(node);
+            //thêm event vào cho node vừa thêm vào
+            const btnEdit = node.querySelector(".btn-edit");
+            const btnDel = node.querySelector(".btn-delete");
+            const textArea = node.querySelector(".text-area textarea");
+            const main = node.querySelector(".main");
+
+            btnEdit.addEventListener("click", () => {
+                main.classList.toggle("hidden")
+                textArea.classList.toggle("hidden");
+            })
+
+            textArea.addEventListener("input", (e) => {
+                const value = e.target.value;
+                main.textContent = value;
+                updateStorage();
+            })
+
+            btnDel.addEventListener("click", (e) => {
+                node.remove();
+                updateStorage();
+            })                          
+        }
+
+        // lưu vào storage
+        function updateStorage(){
+            const notes = document.querySelectorAll(".text-area textarea");
+            const texts = [];
+            notes.forEach(note => texts.push(note.value));
+            localStorage.setItem("notes", JSON.stringify(texts));
+        }
+
+    </script>
+</body>
+</html>

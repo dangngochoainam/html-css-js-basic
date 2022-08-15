@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Hồ sơ</title>
+    <style>
+        
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #f5f6f7;
+        }
+        .block-header{
+            background-color: #ced4da;
+            padding: 10px 15px;
+            font-weight: bold;
+
+        }
+        .block-title{
+            font-size: 22px;
+        }
+        .block-content{
+            padding: 10px 15px;
+        }
+        .nav-link{
+            color: #575757;
+            font-weight: bold;
+        }
+
+        .block{
+            background-color: white;
+            font-size: 17.5px;
+        }
+
+
+
+        .content-heading{
+            border-bottom: 1px solid #eaecee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        #editForm input{
+            font-size: 16px;
+        }
+        .items-push{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="block">
+
+                    <div class="block-header">
+                        <h3 class="block-title"><i class="fas fa-cog fa-fw"></i> Cài đặt</h3>
+                    </div>
+                    
+                    <div class="block-content">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between active" id="u-vnav-edit" href="edit.html">
+                                    <span><i class="far fa-fw fa-address-card mr-5"></i> Hồ sơ</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-avatar" href="edit-avatar.html">
+                                    <span><i class="fa fa-fw fa-camera mr-5"></i> Ảnh đại diện</span>
+                                </a>
+                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-password" href="edit-password.html">
+                                        <span><i class="fa fa-fw fa-key mr-5"></i> Mật khẩu</span>
+                                    </a>
+                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-email" href="edit-email.html">
+                                    <span><i class="fa fa-fw fa-envelope mr-5"></i> Email</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-9">
+                <div class="block">
+                    <div class="block block-rounded block-fx-shadow">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title font-w600">Chỉnh sửa hồ sơ của bạn</h3>
+                        </div>
+                        <div class="block-content">
+                            <!-- User Profile -->
+                            <form action="" id="editForm" method="post">                      
+                                <h2 class="content-heading text-black pt-0">Thông tin cơ bản</h2>
+                                <div class="row items-push">
+                                    <div class="col-lg-7 offset-lg-1">
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="RealName">Tên hiển thị</label>
+                                                <input class="form-control form-control" data-val-required="Tên hiển thị không được để trống" id="RealName" name="RealName" placeholder="Tên hiển thị" type="text" value="dangngochoainam0601@gmail.com">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row gutters-tiny">
+                                            <div class="col-9">
+                                                <label for="Birthday">Ngày sinh</label>
+                                                <input value="26/12/2021" class="form-control form-control" data-date-format="dd/mm/yyyy" name="Birthday" placeholder="dd/mm/yyyy" type="date">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row gutters-tiny">
+                                            <div class="col-9">
+                                                <label for="Gender">Giới tính</label>
+                                                <select class="form-control form-control" id="Gender" name="Gender">
+                                                    <option selected="selected" value="0">Không xác định</option>
+                                                    <option value="1">Nam</option>
+                                                    <option value="2">Nữ</option>
+                                                    <option value="3">Khác</option>
+                                                    </select>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <h2 class="content-heading text-black pt-0">Thông tin liên hệ</h2>
+                                <div class="row items-push">
+                                    <div class="col-lg-7 offset-lg-1">
+                                        <div class="form-group row gutters-tiny">
+                                            <div class="col-9">
+                                                <label for="Phone">Số điện thoại</label>
+                                                <input class="form-control form-control" id="Phone" name="Phone" placeholder="Số điện thoại" type="tel" value="">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row gutters-tiny">
+                                            <div class="col-9">
+                                                <label for="Address">Địa chỉ</label>
+                                                <input class="form-control form-control" id="Address" name="Address" placeholder="Địa chỉ" type="text" value="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="Google">Email</label>
+                                                <div class="input-group input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-envelope fa-fw"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input class="form-control" id="Google" name="Google" placeholder="Email" type="email" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mt-20">
+                                            <div class="col-12">
+                                                <button style="font-size: 16px" type="submit" class="btn btn-primary btn-noborder"><i class="fas fa-save fa-fw"></i> Lưu thay đổi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>                    <!-- END User Profile -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

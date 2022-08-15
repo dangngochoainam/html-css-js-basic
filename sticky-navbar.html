@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Navbar</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+        }
+        nav.container{
+            position: fixed;
+            align-items: center;
+            height: 60px;
+            justify-content: space-between;
+            padding: 20px 155px;
+            background-color: black;
+            color: white;
+            transition: all ease .5s;
+            width: 100%;
+        }
+        nav.fixed{
+            height: 50px;
+            background-color: white;
+            color: black;
+        }
+        .menu{
+            list-style-type: none;
+        }
+        .menu li{
+            margin-right: 15px;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+        .menu li:first-child{
+            color: rgb(190, 55, 55);
+        }
+        .menu li:hover{
+            color: rgb(190, 55, 55);
+        }
+        .hero{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url("Image/macbook.png");
+            background-size: cover;
+            height: 95vh;
+            color: white;
+        }
+        .hero h2{
+            margin-bottom: 15px;
+        }
+        .container-content{
+            padding: 10px 155px;
+        }
+        .container-content h2{
+            margin: 20px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="container">
+        <h3 class="title">My Website</h3>
+        <ul class="menu container">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h2>Welcome To My Website</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores, consequuntur?</p>
+    </div>
+    <section class="container-content">
+        <h2>Content One</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione dolorem voluptates eveniet tempora ut cupiditate magnam, sapiente, hic quo in ipsum iste soluta eaque perferendis nihil recusandae dolore officia aperiam corporis similique. Facilis quos tempore labore totam! Consectetur molestiae iusto ducimus error reiciendis aspernatur dolor, modi dolorem sit architecto, voluptate magni sunt unde est quas? Voluptates a dolorum voluptatum quo perferendis aut sit. Aspernatur libero laboriosam ab eligendi omnis delectus earum labore, placeat officiis sint illum rem voluptas ipsum repellendus iste eius recusandae quae excepturi facere, iure rerum sequi? Illum velit delectus dicta et iste dolorum obcaecati minus odio eligendi!</p>
+
+        <h2>Content Two</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur provident nostrum possimus inventore nisi laboriosam consequatur modi nulla eos, commodi, omnis distinctio! Maxime distinctio impedit provident, voluptates illo odio nostrum minima beatae similique a sint sapiente voluptatum atque optio illum est! Tenetur tempora doloremque quae iste aperiam hic cumque repellat?</p>
+    </section>
+
+    <script>
+        const nav = document.querySelector("nav")
+        window.addEventListener("scroll", () => {
+            if(window.scrollY>= 200){
+                nav.classList.add("fixed")
+            }
+            else{
+                nav.classList.remove("fixed")
+
+            }
+        })
+
+
+
+
+    </script>
+</body>
+</html>

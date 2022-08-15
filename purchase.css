@@ -1,0 +1,118 @@
+
+section{
+    background: #eee;
+}
+ul {
+    list-style-type: none;
+}
+.mg-lf{
+    margin: 0px 10px 0px 10px;
+}
+
+/* tool bar */
+.tool-bar{
+    margin: 20px 0px 10px 0px;
+}
+.btn-icon{
+    border: none;
+    top: 50%;
+    text-align: center;
+}
+
+/* form */
+.area-search{
+    margin: 0px 50px;
+}
+/* table */
+.thead{
+    background-color: rgb(114, 176, 226) ;
+}
+.table .thead-light th:first-child{
+    width: 5%;
+}
+.table .thead-light th:last-child{
+    width: 10%;
+}
+tbody{
+    background-color: rgb(255, 255, 255);
+}
+.table tr:first-child th:first-child{
+    border-radius: 5px 0px 0px 0px;
+}
+.table tr:first-child th:last-child{
+    border-radius: 0px 5px 0px 0px;
+}
+/* right part */
+.right-part{
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.right-part .row{
+    margin-bottom: 20px;
+}
+
+.info > div {
+
+    border-bottom: 2px rgb(122, 122, 122) solid;
+}
+
+
+.btn-save div button{
+    width: 100%;
+}
+.table th{
+    padding: 0.5rem;
+    vertical-align: middle !important;
+
+}
+#username{
+    padding-left: 15px;
+}
+.table td{
+    padding: 0.5rem;
+    vertical-align: middle !important;
+}
+#quantity input{
+    width: 60px;
+    border: 0;
+    border-bottom: 1px seashell solid;
+    text-align: center;
+
+
+}
+#unit-price{
+
+    width: 150px;
+    text-align: right;
+}
+#price{
+    width: 150px;
+    text-align: right;
+}
+.products{
+    position: absolute;
+    background-color: burlywood;
+    top: 50px;
+    right: 0;
+    width: 85%;
+    display: none;
+}
+.show{
+    display: block;
+}
+.info-inventory{
+    width: 10%;
+}
+
+.img img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 3px ;
+}
+@media (min-width: 1200px){
+    .container {
+    max-width: 1444px;
+}
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Steps</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            background-color: beige;
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 300px;
+            position: relative;
+        }
+        .container::after{
+            content: "";
+            width: 300px;
+            height: 5px;
+            background-color: rgb(106, 110, 110);
+            position: absolute;
+            z-index: -2;
+            
+        }
+        .line{
+            left: 0;
+            width: 0px;
+            height: 5px;
+            background-color: rgb(0, 68, 255);
+            position: absolute;
+            z-index: -1;
+            transition: width ease 0.5s;
+        }
+        .step{
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 3px transparent solid;
+            transition: border ease 0.5s;
+        }
+        .step.active{
+            border: 3px rgb(0, 68, 255) solid;
+        }
+        .btn{
+            margin-top: 20px;
+        }
+        .btn button{
+            padding: 1px 5px;
+            width: 50px;
+            background-color: gray;
+            color: white;
+            border: 0;
+        }
+        .btn button.active{
+            background-color: rgb(50, 50, 221);
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="line"></div>
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+            <div class="step">4</div>
+    </div>
+    <div class="btn">
+        <button class="prev">Prev</button>
+        <button class="next active">Next</button>
+    </div>
+
+    <script>
+        let count = 1;
+        const line = document.querySelector(".line")
+        const steps = document.querySelectorAll(".step");
+        const btnPrev = document.querySelector(".prev");
+        const btnNext = document.querySelector(".next");
+        btnNext.addEventListener("click", () => {
+            if(count < steps.length){
+                btnPrev.classList.add("active");
+                steps[count].classList.add("active")
+                line.style.width = `${100*count++}px`
+                update(count)
+            }
+        })
+        
+        btnPrev.addEventListener("click", () => {
+            if(count > 1){
+                btnPrev.classList.add("active");
+                line.style.width = `${(100*--count) - 100}px`
+                steps[count].classList.remove("active")
+                update(count)
+
+            }
+        })
+
+        function update(count){
+            if(count == steps.length){
+                btnNext.classList.remove("active")
+            }
+            else if(count == 1){
+                btnPrev.classList.remove("active")
+            }
+            else{
+                btnNext.classList.add("active")
+                btnPrev.classList.add("active")
+            }
+
+        }
+    </script>
+</body>
+</html>

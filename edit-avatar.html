@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Ảnh đại diện</title>
+    <style>
+        
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #f5f6f7;
+        }
+        .block-header{
+            background-color: #ced4da;
+            padding: 10px 15px;
+            font-weight: bold;
+
+        }
+        .block-title{
+            font-size: 22px;
+        }
+        .block-content{
+            padding: 10px 15px;
+        }
+        .nav-link{
+            color: #575757;
+            font-weight: bold;
+        }
+
+        .block{
+            background-color: white;
+            font-size: 17.5px;
+        }
+
+
+        .avatar{
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+            margin: 20px;
+            border-radius: 50%;
+            border: 3px orange solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="block">
+
+                    <div class="block-header">
+                        <h3 class="block-title"><i class="fas fa-cog fa-fw"></i> Cài đặt</h3>
+                    </div>
+                    
+                    <div class="block-content">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-edit" href="edit.html">
+                                    <span><i class="far fa-fw fa-address-card mr-5"></i> Hồ sơ</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between active" id="u-vnav-avatar" href="edit-avatar.html">
+                                    <span><i class="fa fa-fw fa-camera mr-5"></i> Ảnh đại diện</span>
+                                </a>
+                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-password" href="edit-password.html">
+                                        <span><i class="fa fa-fw fa-key mr-5"></i> Mật khẩu</span>
+                                    </a>
+                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center justify-content-between" id="u-vnav-email" href="edit-email.html">
+                                    <span><i class="fa fa-fw fa-envelope mr-5"></i> Email</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-9">
+                <div class="block">
+                    <div class="block block-rounded block-fx-shadow">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title font-w600">Chỉnh sửa ảnh đại diện của bạn</h3>
+                        </div>
+                        <div class="block-content">
+                            <form action="" class="form-horizontal" id="formChangeAvatar" method="post">
+                                <div class="media mb-20">
+
+                                
+                                    <div class="media-left d-none d-sm-block pr-20">
+                                        <img class="media-object avatar" src="/Image/blank-profile-picture-973460__480.png">
+                                    </div>    
+                                    <div class="media-body">
+                                        <input type="file" name="file" class="cloudinary-fileupload d-none" id="file-choose">
+        
+                                        <div id="direct_upload" class="d-flex border border-2x border-black-op mb-20" style="padding: 20px 12px; margin-bottom: 10px;">
+                                            <div class="text-center align-self-center w-100 font-size-h5">
+                                                <span class="d-block mb-2">Kéo ảnh vào đây</span>
+                                                <small class="d-block mb-2">- hoặc -</small>
+                                                <a style="font-size: 16px;" href="javascript:document.getElementById('file-choose').click();" class="btn btn-outline-secondary btn-sm">Chọn ảnh từ máy tính của bạn</a>
+                                            </div>
+                                        </div>
+        
+                                        <input style="font-size: 17.5px;" id="btn-submit" type="submit" value="Đặt làm ảnh đại diện" class="btn btn-primary btn-noborder d-block">
+                                    </div>
+
+                                </div>  
+                            </form>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const fileEl = document.getElementById('file-choose')
+        const avatarEl = document.querySelector('.avatar')
+
+        fileEl.addEventListener('change', (event) => {
+            const {name} = event.target.files['0']
+            avatarEl.setAttribute('src', `/Image/${name}`)
+            console.log(name)
+        })
+    </script>
+</body>
+</html>
