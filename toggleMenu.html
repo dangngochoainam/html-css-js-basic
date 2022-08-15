@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+        .main{
+            max-width: 30%;
+            position: relative;
+            left: 70%;    
+            margin: 0;
+
+        }
+        .toggle-menu{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+            background-color: aliceblue;
+            position: relative;
+            z-index: -1;
+            transform: translateX(100%);
+            transition: all .5s linear;
+        }
+        
+        .show{
+            transform: translateX(0);
+            transition: transform .5s linear;
+        }
+        .toggle-menu li{
+            min-height: 50px;
+            border-bottom: 1px silver solid;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            font-size: 25px;
+            font-weight: 400;
+        }
+        .icon__menu{
+            font-size: 35px;
+            position: absolute;
+            right: 2px;
+            cursor: pointer;
+            margin: 10px 15px;
+        }
+        .icon__menu :nth-child(2){
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class='main'>
+        <div class="icon__menu">
+            <i onclick="toggleMenu()"  id="bars" class="fas fa-bars"></i>
+            <i onclick="toggleMenu()" class="fas fa-times"></i>
+        </div>
+        <ul class="toggle-menu">
+            <li>Home</li>
+            <li>About</li>
+            <li>Works</li>
+            <li>Contact</li>
+            <li>Blog</li>
+        </ul>
+    </div>
+    <script>
+        function toggleMenu(){
+            var menu = document.querySelector('.toggle-menu');
+            var x = menu.getAttribute('class');
+            if(x.includes('show')){
+                menu.classList.remove('show');
+                document.querySelector('.icon__menu :nth-child(1)').style.display = 'block';
+                document.querySelector('.icon__menu :nth-child(2)').style.display = 'none';
+            }
+            else{
+                menu.classList.add('show');
+                document.querySelector('.icon__menu :nth-child(2)').style.display = 'block';
+                document.querySelector('.icon__menu :nth-child(1)').style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
