@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="toastMess.js"></script>
+    <title>Toast Messages</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        div#btn {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .btn{
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50px;
+            min-width: 150px;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity ease-in-out 0.3s;
+        }
+        .btn:hover{
+            opacity: 0.5;
+        }
+        .btn--success{
+            background-color: #71be34;
+        }
+        .btn--danger{
+            background-color: #ff623d;
+        }
+        #toast {
+            position: fixed;
+            right: 0px;
+            max-width: 400px;
+            z-index: 9999999;
+            
+        }
+        @keyframes slideInLeft {
+            from{
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to{
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeOut {
+            to{opacity: 0;}
+            
+        }
+        
+        #toast > div{
+            display: flex;
+            /* max-width: 400px; */
+            padding: 6px;
+            margin-bottom: 15px;
+            background-color: bisque;
+            /* transform: translateX(100%); */
+            /* position: relative;
+            right: 0px; */
+        }
+        div.toast__success{
+            border-left: 5px #71be34 solid;
+        }
+        div.toast__danger{
+            border-left: 5px #ff623d solid;
+        }
+        #toast__body{
+            width: 250px;
+            margin-left: 10px;
+        }
+        #toast__body p {
+            margin: 8px;
+        }
+        #toast__icon {
+            align-self: center;
+            color: aliceblue;
+            border-radius: 50px;
+            text-align: center;
+            min-width: 30px;
+            margin-left: 10px;
+            padding: 6px 4px;
+            
+            
+        }
+        div.toast__success #toast__icon {
+            background-color: #71be34;
+
+        }
+        div.toast__danger #toast__icon {
+            background-color: #ff623d;
+        }
+
+        #title{
+            font-size: 15px;
+            font-weight: bold;
+            word-spacing: 1px;
+        }
+        #message{
+            font-size: 13px;
+            color: #888;
+        }
+        #toast__close {
+            align-self: center;
+            color: #888;
+            border-radius: 50px;
+            text-align: center;
+            min-width: 30px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="toast">
+        <!-- <div class="toast__success">
+            <div id="toast__icon"><i class="fas fa-check"></i></div>
+            <div id="toast__body">
+                <p id="title">Thành công!</p>
+                <p id="message">
+                    Bạn đã đăng kí thành công tại HN.
+                </p>
+            </div>
+            <div id="toast__close"><i class="fas fa-times"></i></div>
+        </div>
+
+        <div class="toast__danger">
+            <div id="toast__icon"><i class="fas fa-exclamation"></i></div>
+            <div id="toast__body">
+                <p id="title">Thất bại!</p>
+                <p id="message">
+                    Có lỗi xảy ra, vui lòng liên hệ quản trị viên.
+                </p>
+            </div>
+            <div id="toast__close"><i class="fas fa-times"></i></div>
+        </div> -->
+      
+    </div>
+    <div id="btn">
+        <div onclick="showSuccessToast()" class="btn btn--success">Show success toast</div>
+        <div onclick="showErrorToast()" class="btn btn--danger">Show error toast</div>
+    </div>
+    <script>
+        function showSuccessToast(){
+            toast({
+            type : 'success',
+            title : 'Thành công!',
+            messages : 'Bạn đã đăng ký thành công tại HN.'}
+            );
+            
+        }
+        function showErrorToast(){
+            toast({
+            type : 'danger',
+            title : 'Thất bại!',
+            messages : 'Có lỗi xảy ra, vui lòng liên hệ quản trị viên.'}
+            );
+            
+        }
+    </script>
+</body>
+</html>
